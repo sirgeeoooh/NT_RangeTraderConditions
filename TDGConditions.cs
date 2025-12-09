@@ -207,19 +207,19 @@ namespace NinjaTrader.NinjaScript.Indicators
 {
 	public partial class Indicator : NinjaTrader.Gui.NinjaScript.IndicatorRenderBase
 	{
-		private SIYLConditions[] cacheSIYLConditions;
-		public SIYLConditions SIYLConditions(int aTRPeriod)
+		private TDGConditions[] cacheTDGConditions;
+		public TDGConditions TDGConditions()
 		{
-			return SIYLConditions(Input, aTRPeriod);
+			return TDGConditions(Input);
 		}
 
-		public SIYLConditions SIYLConditions(ISeries<double> input, int aTRPeriod)
+		public TDGConditions TDGConditions(ISeries<double> input)
 		{
-			if (cacheSIYLConditions != null)
-				for (int idx = 0; idx < cacheSIYLConditions.Length; idx++)
-					if (cacheSIYLConditions[idx] != null && cacheSIYLConditions[idx].ATRPeriod == aTRPeriod && cacheSIYLConditions[idx].EqualsInput(input))
-						return cacheSIYLConditions[idx];
-			return CacheIndicator<SIYLConditions>(new SIYLConditions(){ ATRPeriod = aTRPeriod }, input, ref cacheSIYLConditions);
+			if (cacheTDGConditions != null)
+				for (int idx = 0; idx < cacheTDGConditions.Length; idx++)
+					if (cacheTDGConditions[idx] != null &&  cacheTDGConditions[idx].EqualsInput(input))
+						return cacheTDGConditions[idx];
+			return CacheIndicator<TDGConditions>(new TDGConditions(), input, ref cacheTDGConditions);
 		}
 	}
 }
@@ -228,14 +228,14 @@ namespace NinjaTrader.NinjaScript.MarketAnalyzerColumns
 {
 	public partial class MarketAnalyzerColumn : MarketAnalyzerColumnBase
 	{
-		public Indicators.SIYLConditions SIYLConditions(int aTRPeriod)
+		public Indicators.TDGConditions TDGConditions()
 		{
-			return indicator.SIYLConditions(Input, aTRPeriod);
+			return indicator.TDGConditions(Input);
 		}
 
-		public Indicators.SIYLConditions SIYLConditions(ISeries<double> input , int aTRPeriod)
+		public Indicators.TDGConditions TDGConditions(ISeries<double> input )
 		{
-			return indicator.SIYLConditions(input, aTRPeriod);
+			return indicator.TDGConditions(input);
 		}
 	}
 }
@@ -244,14 +244,14 @@ namespace NinjaTrader.NinjaScript.Strategies
 {
 	public partial class Strategy : NinjaTrader.Gui.NinjaScript.StrategyRenderBase
 	{
-		public Indicators.SIYLConditions SIYLConditions(int aTRPeriod)
+		public Indicators.TDGConditions TDGConditions()
 		{
-			return indicator.SIYLConditions(Input, aTRPeriod);
+			return indicator.TDGConditions(Input);
 		}
 
-		public Indicators.SIYLConditions SIYLConditions(ISeries<double> input , int aTRPeriod)
+		public Indicators.TDGConditions TDGConditions(ISeries<double> input )
 		{
-			return indicator.SIYLConditions(input, aTRPeriod);
+			return indicator.TDGConditions(input);
 		}
 	}
 }
